@@ -1,0 +1,816 @@
+{
+  "schema": "central-europe-daily-route-v1",
+  "disclaimer": "GPS pins and line segments are approximate; not a precise walk, road, transit or cableway track. Verify the actual route and boarding points with Google Maps and official operators.",
+  "days": {
+    "2026-10-19": {
+      "groups": [
+        {
+          "id": "airport",
+          "label": "桃園機場 · 出發",
+          "description": "搭乘 JX101 22:50 前往布拉格；航線不在此顯示。",
+          "mode": "walking",
+          "stops": [
+            {
+              "key": "tpeairport",
+              "name": "桃園國際機場第一航廈",
+              "address": "Taiwan Taoyuan International Airport Terminal 1, Taoyuan, Taiwan",
+              "lat": 25.078,
+              "lng": 121.232
+            }
+          ],
+          "notice": "機場的航廈、報到櫃檯與登機門請依星宇航空資訊。"
+        }
+      ]
+    },
+    "2026-10-20": {
+      "groups": [
+        {
+          "id": "arrival",
+          "label": "抵達與機場巴士",
+          "description": "機場 AE → Praha hl.n. → 飯店（此圖僅顯示主要節點）。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "prgairport",
+              "name": "Prague Airport Terminal 1",
+              "address": "Václav Havel Airport Prague Terminal 1, Czechia",
+              "lat": 50.1008,
+              "lng": 14.2632
+            },
+            {
+              "key": "praha_station",
+              "name": "Praha hlavní nádraží",
+              "address": "Praha hlavní nádraží, Prague, Czechia",
+              "lat": 50.0835,
+              "lng": 14.4355,
+              "from": "transit"
+            },
+            {
+              "key": "praguestra",
+              "name": "Prague Star Hotel",
+              "address": "Ve Smečkách 588/12, 110 00 Praha 1, Czechia",
+              "lat": 50.079,
+              "lng": 14.4287,
+              "from": "walking"
+            }
+          ],
+          "notice": "AE 布拉格市區站施工，臨時站實際停靠地點以 PID 最新公告為準。"
+        },
+        {
+          "id": "oldtown",
+          "label": "老城區步行",
+          "description": "瓦茨拉夫廣場 → 火藥塔 → 素食午餐 → 老城 → 查理大橋。",
+          "mode": "walking",
+          "stops": [
+            {
+              "key": "wenceslas",
+              "name": "瓦茨拉夫廣場",
+              "address": "Václavské náměstí, Praha 1, Czechia",
+              "lat": 50.0815,
+              "lng": 14.427
+            },
+            {
+              "key": "powder",
+              "name": "火藥塔",
+              "address": "Prašná brána, Náměstí Republiky, Prague, Czechia",
+              "lat": 50.0871,
+              "lng": 14.4277
+            },
+            {
+              "key": "maitrea",
+              "name": "Maitrea 素食餐廳",
+              "address": "Maitrea Restaurant, Týnská ulička, Prague, Czechia",
+              "lat": 50.0878,
+              "lng": 14.4221
+            },
+            {
+              "key": "tyn",
+              "name": "泰恩教堂",
+              "address": "Church of Our Lady before Týn, Prague, Czechia",
+              "lat": 50.0875,
+              "lng": 14.4223
+            },
+            {
+              "key": "oldtown",
+              "name": "布拉格老城廣場",
+              "address": "Staroměstské náměstí, Prague, Czechia",
+              "lat": 50.087,
+              "lng": 14.4209
+            },
+            {
+              "key": "charles",
+              "name": "查理大橋",
+              "address": "Charles Bridge, Prague, Czechia",
+              "lat": 50.0863,
+              "lng": 14.4114
+            },
+            {
+              "key": "lehka",
+              "name": "Lehká hlava 素食餐廳",
+              "address": "Lehká hlava, Boršov, Prague, Czechia",
+              "lat": 50.085,
+              "lng": 14.4131
+            }
+          ],
+          "notice": "圖線只代表行經順序；老城多石板路，請以 Google Maps 步行路線為準。"
+        }
+      ]
+    },
+    "2026-10-21": {
+      "groups": [
+        {
+          "id": "castle",
+          "label": "布拉格城堡與小城",
+          "description": "城堡、聖維特大教堂、黃金巷 → Nerudova → Lennon Wall → Kampa。",
+          "mode": "walking",
+          "stops": [
+            {
+              "key": "praguecastle",
+              "name": "布拉格城堡",
+              "address": "Prague Castle, Hradčany, Prague, Czechia",
+              "lat": 50.0912,
+              "lng": 14.4015
+            },
+            {
+              "key": "stvitus",
+              "name": "聖維特大教堂",
+              "address": "St. Vitus Cathedral, Prague Castle, Czechia",
+              "lat": 50.0909,
+              "lng": 14.4007
+            },
+            {
+              "key": "golden",
+              "name": "黃金巷",
+              "address": "Golden Lane, Prague Castle, Prague",
+              "lat": 50.0922,
+              "lng": 14.404
+            },
+            {
+              "key": "vegans",
+              "name": "Vegan's Prague",
+              "address": "Vegan's Prague, Nerudova 36, Prague",
+              "lat": 50.0896,
+              "lng": 14.3999
+            },
+            {
+              "key": "lennon",
+              "name": "Lennon Wall",
+              "address": "Lennon Wall, Velkopřevorské náměstí, Prague",
+              "lat": 50.0865,
+              "lng": 14.4066
+            },
+            {
+              "key": "kampa",
+              "name": "Kampa Island",
+              "address": "Kampa, Prague, Czechia",
+              "lat": 50.0846,
+              "lng": 14.408
+            }
+          ],
+          "notice": "上午上城堡可以搭市區電車，地圖僅呈現城堡區內與下山的停靠順序。"
+        },
+        {
+          "id": "extra",
+          "label": "可選：Letná Park",
+          "description": "下午如果還有體力，從小城區前往 Letná Park。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "kampa",
+              "name": "Kampa Island",
+              "address": "Kampa, Prague, Czechia",
+              "lat": 50.0846,
+              "lng": 14.408
+            },
+            {
+              "key": "letna",
+              "name": "Letná Park",
+              "address": "Letná Park, Prague, Czechia",
+              "lat": 50.0945,
+              "lng": 14.4152,
+              "from": "transit"
+            }
+          ],
+          "notice": "Letná Park 為可選行程，無須趕去。"
+        }
+      ]
+    },
+    "2026-10-22": {
+      "groups": [
+        {
+          "id": "departure",
+          "label": "布拉格上車",
+          "description": "Prague Star → Opletalova 的 FlixBus 臨時站。",
+          "mode": "walking",
+          "stops": [
+            {
+              "key": "praguestra",
+              "name": "Prague Star Hotel",
+              "address": "Ve Smečkách 588/12, 110 00 Praha 1, Czechia",
+              "lat": 50.079,
+              "lng": 14.4287
+            },
+            {
+              "key": "prgflix",
+              "name": "FlixBus Opletalova 臨時站",
+              "address": "FlixBus Prague (Main Railway Station), Opletalova, Prague, Czechia",
+              "lat": 50.0844,
+              "lng": 14.4339
+            }
+          ],
+          "notice": "09:15 發車。上車位置只是 Opletalova 區域參考，實際以票券和 FlixBus 當日公告為準。"
+        },
+        {
+          "id": "krumlov",
+          "label": "CK 老城步行",
+          "description": "下車 → 飯店 → Laibon 午餐 → 彩繪塔 → 斗篷橋 → 城堡花園。",
+          "mode": "walking",
+          "stops": [
+            {
+              "key": "ckstation",
+              "name": "Český Krumlov 公車站",
+              "address": "Český Krumlov autobusové nádraží, Czechia",
+              "lat": 48.8118,
+              "lng": 14.32
+            },
+            {
+              "key": "ckhotel",
+              "name": "Mini Apart Hotel Abraka",
+              "address": "Mini Apart Hotel Abraka, Český Krumlov, Czechia",
+              "lat": 48.8101,
+              "lng": 14.315
+            },
+            {
+              "key": "laibon",
+              "name": "Laibon 素食餐廳",
+              "address": "Laibon, Parkán 105, Český Krumlov",
+              "lat": 48.8107,
+              "lng": 14.3151
+            },
+            {
+              "key": "cktower",
+              "name": "CK 彩繪塔",
+              "address": "Castle Tower Český Krumlov, Czechia",
+              "lat": 48.8128,
+              "lng": 14.3149
+            },
+            {
+              "key": "ckcloak",
+              "name": "CK 斗篷橋",
+              "address": "Cloak Bridge, Český Krumlov, Czechia",
+              "lat": 48.8125,
+              "lng": 14.3108
+            },
+            {
+              "key": "ckgarden",
+              "name": "CK 城堡花園",
+              "address": "Castle Garden, Český Krumlov, Czechia",
+              "lat": 48.8127,
+              "lng": 14.3071
+            }
+          ],
+          "notice": "兩城市間移動搭 FlixBus；不要將這張 CK 市區步行圖當作巴士線路圖。"
+        }
+      ]
+    },
+    "2026-10-23": {
+      "groups": [
+        {
+          "id": "pickup",
+          "label": "CK 接駁車",
+          "description": "09:10 由 Mini Apart Hotel Abraka 接送到 Haus Bellevue。",
+          "mode": "driving",
+          "stops": [
+            {
+              "key": "ckhotel",
+              "name": "Mini Apart Hotel Abraka",
+              "address": "Mini Apart Hotel Abraka, Český Krumlov, Czechia",
+              "lat": 48.8101,
+              "lng": 14.315
+            },
+            {
+              "key": "haus",
+              "name": "Haus Bellevue",
+              "address": "Bahnhofstraße 88, 4831 Obertraun, Austria",
+              "lat": 47.559,
+              "lng": 13.6817,
+              "from": "driving"
+            }
+          ],
+          "notice": "已訂 CK Shuttle 門到門接送；示意線不是接駁車實際道路路線。"
+        },
+        {
+          "id": "hallstatt",
+          "label": "Hallstatt 湖畔",
+          "description": "Obertraun 搭公車至 Hallstatt Lahn → 午餐 → 市集廣場 → 經典觀景點。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "haus",
+              "name": "Haus Bellevue",
+              "address": "Bahnhofstraße 88, 4831 Obertraun, Austria",
+              "lat": 47.559,
+              "lng": 13.6817
+            },
+            {
+              "key": "hallstattbus",
+              "name": "Hallstatt Lahn (Busterminal)",
+              "address": "Hallstatt Lahn, Austria",
+              "lat": 47.5567,
+              "lng": 13.6475,
+              "from": "transit"
+            },
+            {
+              "key": "polreich",
+              "name": "Café Polreich",
+              "address": "Café Polreich, Seestraße 89, Hallstatt, Austria",
+              "lat": 47.5607,
+              "lng": 13.6484
+            },
+            {
+              "key": "hallmarket",
+              "name": "Hallstatt Marktplatz",
+              "address": "Marktplatz Hallstatt, Austria",
+              "lat": 47.5624,
+              "lng": 13.6497
+            },
+            {
+              "key": "hallview",
+              "name": "Hallstatt 經典明信片觀景點",
+              "address": "Panoramic Viewpoint Hallstatt, Gosaumühlstraße, 4830 Hallstatt, Austria",
+              "lat": 47.5645953,
+              "lng": 13.6499746
+            }
+          ],
+          "notice": "搭 543／544 的方向、上下車站與時間，依當日 OÖVV 班表核對。"
+        }
+      ]
+    },
+    "2026-10-24": {
+      "groups": [
+        {
+          "id": "mountain",
+          "label": "Dachstein 纜車與山頂",
+          "description": "山腳纜車 → Krippenstein → World Heritage Spiral → 5 Fingers。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "cablebase",
+              "name": "Dachstein Krippenstein 山腳纜車站",
+              "address": "Dachstein Krippenstein Seilbahn Talstation, Winkl 34, Obertraun, Austria",
+              "lat": 47.5459,
+              "lng": 13.7085
+            },
+            {
+              "key": "kripp",
+              "name": "Krippenstein 山頂",
+              "address": "Dachstein Krippenstein Bergstation, Austria",
+              "lat": 47.5248,
+              "lng": 13.6932,
+              "from": "cable"
+            },
+            {
+              "key": "worldspiral",
+              "name": "World Heritage Spiral",
+              "address": "Welterbespirale Krippenstein, Obertraun, Austria",
+              "lat": 47.5242,
+              "lng": 13.69208
+            },
+            {
+              "key": "five",
+              "name": "五指觀景台",
+              "address": "5 Fingers viewing platform, Obertraun, Austria",
+              "lat": 47.5285,
+              "lng": 13.6924
+            }
+          ],
+          "notice": "纜車部分以示意連線表示；山頂步道視積雪、風速、霧況調整，切勿依直線穿越山坡。"
+        },
+        {
+          "id": "train",
+          "label": "ÖBB 火車＋替代巴士",
+          "description": "Obertraun → Bad Ischl → Attnang-Puchheim → Wien Hbf。",
+          "mode": "train",
+          "stops": [
+            {
+              "key": "oberstation",
+              "name": "Obertraun-Dachsteinhöhlen 火車站",
+              "address": "Obertraun-Dachsteinhöhlen Bahnhof, Austria",
+              "lat": 47.559,
+              "lng": 13.6851
+            },
+            {
+              "key": "badischl",
+              "name": "Bad Ischl Bahnhof",
+              "address": "Bad Ischl Bahnhof, Austria",
+              "lat": 47.711,
+              "lng": 13.621,
+              "from": "train"
+            },
+            {
+              "key": "attnang",
+              "name": "Attnang-Puchheim Bahnhof",
+              "address": "Attnang-Puchheim Bahnhof, Austria",
+              "lat": 48.0117,
+              "lng": 13.7206,
+              "from": "transit"
+            },
+            {
+              "key": "wienhbf",
+              "name": "Wien Hauptbahnhof",
+              "address": "Wien Hauptbahnhof, Wien, Austria",
+              "lat": 48.1855,
+              "lng": 16.3778,
+              "from": "train"
+            }
+          ],
+          "notice": "⚠ 14:59 REX70、15:35 SV170、17:01 IC743；兩次轉乘分別只有 5 和 9 分鐘。此圖不是軌道／公車實際路線，務必看 ÖBB 最新站位。"
+        },
+        {
+          "id": "arrival",
+          "label": "維也納抵達飯店",
+          "description": "Wien Hbf 下車後，步行到 B&B Hotel Wien-Hbf。",
+          "mode": "walking",
+          "stops": [
+            {
+              "key": "wienhbf",
+              "name": "Wien Hauptbahnhof",
+              "address": "Wien Hauptbahnhof, Wien, Austria",
+              "lat": 48.1855,
+              "lng": 16.3778
+            },
+            {
+              "key": "wienhotel",
+              "name": "B&B HOTEL Wien-Hbf",
+              "address": "Bloch-Bauer-Promenade 5, 1100 Wien, Austria",
+              "lat": 48.1845,
+              "lng": 16.3857
+            }
+          ],
+          "notice": "19:03 抵達，先確認住宿位置，晚餐視體力。"
+        }
+      ]
+    },
+    "2026-10-25": {
+      "groups": [
+        {
+          "id": "palace",
+          "label": "上午美泉宮",
+          "description": "飯店叫車 → 美泉宮正門 → 花園 Gloriette。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "wienhotel",
+              "name": "B&B HOTEL Wien-Hbf",
+              "address": "Bloch-Bauer-Promenade 5, 1100 Wien, Austria",
+              "lat": 48.1845,
+              "lng": 16.3857
+            },
+            {
+              "key": "schon",
+              "name": "美泉宮正門",
+              "address": "Schönbrunner Schloßstraße 47, 1130 Wien, Austria",
+              "lat": 48.1845,
+              "lng": 16.3123,
+              "from": "driving"
+            },
+            {
+              "key": "gloriette",
+              "name": "Gloriette",
+              "address": "Gloriette Schönbrunn, Vienna, Austria",
+              "lat": 48.1785,
+              "lng": 16.3088
+            }
+          ],
+          "notice": "08:30–08:45 美泉宮已訂入場時間；Uber／Bolt 上車與車程以實際叫車為準。"
+        },
+        {
+          "id": "center",
+          "label": "下午市中心散步",
+          "description": "Karlsplatz → 歌劇院 → 霍夫堡／Demel → 國家圖書館（可選）→ 聖斯德望 → Stadtpark。",
+          "mode": "walking",
+          "stops": [
+            {
+              "key": "karlsplatz",
+              "name": "Karlsplatz",
+              "address": "Karlsplatz, Vienna, Austria",
+              "lat": 48.2,
+              "lng": 16.369
+            },
+            {
+              "key": "opera",
+              "name": "維也納歌劇院",
+              "address": "Wiener Staatsoper, Opernring 2, Vienna, Austria",
+              "lat": 48.2028,
+              "lng": 16.3688
+            },
+            {
+              "key": "hofburg",
+              "name": "霍夫堡",
+              "address": "Hofburg, Michaelerplatz, Wien, Austria",
+              "lat": 48.2069,
+              "lng": 16.365
+            },
+            {
+              "key": "demel",
+              "name": "Demel",
+              "address": "Demel, Kohlmarkt 14, Vienna, Austria",
+              "lat": 48.2086,
+              "lng": 16.3669
+            },
+            {
+              "key": "statehall",
+              "name": "奧地利國家圖書館 State Hall",
+              "address": "Prunksaal der Österreichischen Nationalbibliothek, Josefsplatz 1, Wien, Austria",
+              "lat": 48.2051,
+              "lng": 16.3669
+            },
+            {
+              "key": "stephansdom",
+              "name": "聖斯德望主教座堂",
+              "address": "Stephansdom, Stephansplatz, Wien, Austria",
+              "lat": 48.2085,
+              "lng": 16.3731
+            },
+            {
+              "key": "stadtpark",
+              "name": "Stadtpark 金色史特勞斯雕像",
+              "address": "Johann Strauss Monument, Stadtpark, Vienna, Austria",
+              "lat": 48.2026,
+              "lng": 16.38
+            }
+          ],
+          "notice": "從 Schönbrunn 先搭 U4 回 Karlsplatz，這張圖只標下午步行景點。"
+        }
+      ]
+    },
+    "2026-10-26": {
+      "groups": [
+        {
+          "id": "vienna",
+          "label": "維也納上午",
+          "description": "飯店 → 美景宮 → Wien Hbf 上車。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "wienhotel",
+              "name": "B&B HOTEL Wien-Hbf",
+              "address": "Bloch-Bauer-Promenade 5, 1100 Wien, Austria",
+              "lat": 48.1845,
+              "lng": 16.3857
+            },
+            {
+              "key": "belvedere",
+              "name": "Upper Belvedere",
+              "address": "Upper Belvedere, Prinz Eugen-Straße 27, Wien, Austria",
+              "lat": 48.1917,
+              "lng": 16.3802
+            },
+            {
+              "key": "wienhbf",
+              "name": "Wien Hauptbahnhof",
+              "address": "Wien Hauptbahnhof, Wien, Austria",
+              "lat": 48.1855,
+              "lng": 16.3778,
+              "from": "transit"
+            }
+          ],
+          "notice": "Upper Belvedere 尚未購票，若參觀須依入場時段調整。13:40 火車出發，提前到站。"
+        },
+        {
+          "id": "budapest",
+          "label": "布達佩斯夜景",
+          "description": "Keleti → 飯店 → Napfényes → 漁人堡 → 布達皇宮 → 鏈橋。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "keleti",
+              "name": "Budapest-Keleti",
+              "address": "Budapest-Keleti pályaudvar, Budapest, Hungary",
+              "lat": 47.5004,
+              "lng": 19.0836
+            },
+            {
+              "key": "budhotel",
+              "name": "Hotel Erzsébet City Center",
+              "address": "Károlyi utca 15, 1053 Budapest, Hungary",
+              "lat": 47.4908,
+              "lng": 19.0581,
+              "from": "transit"
+            },
+            {
+              "key": "napfenyes",
+              "name": "Napfényes Restaurant",
+              "address": "Napfényes Restaurant and Confectionery, Ferenciek tere 2, Budapest, Hungary",
+              "lat": 47.4922,
+              "lng": 19.0559
+            },
+            {
+              "key": "fish",
+              "name": "漁人堡",
+              "address": "Fisherman’s Bastion, Szentháromság tér, Budapest, Hungary",
+              "lat": 47.5021,
+              "lng": 19.0349,
+              "from": "transit"
+            },
+            {
+              "key": "budcastle",
+              "name": "布達皇宮",
+              "address": "Buda Castle, Szent György tér 2, Budapest, Hungary",
+              "lat": 47.496,
+              "lng": 19.0396
+            },
+            {
+              "key": "chain",
+              "name": "鏈橋",
+              "address": "Széchenyi Chain Bridge, Budapest, Hungary",
+              "lat": 47.4989,
+              "lng": 19.0431
+            }
+          ],
+          "notice": "16:30 抵達 Budapest-Keleti（不是 Nyugati）；M2 至 Astoria，再步行到飯店。漁人堡可搭 16 號公車上山。"
+        }
+      ]
+    },
+    "2026-10-27": {
+      "groups": [
+        {
+          "id": "budapest-day",
+          "label": "布達佩斯一日路線",
+          "description": "蓋勒特山 → 自由橋 → 中央市場 → 2 號電車 → 國會／鐵鞋 → 聖殿 → M1 → 英雄廣場 → 城市公園 → New York Café → 遊船碼頭。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "citadella",
+              "name": "自由女神像／Citadella",
+              "address": "Citadella, Gellért Hill, Budapest, Hungary",
+              "lat": 47.4866,
+              "lng": 19.0476
+            },
+            {
+              "key": "libertybridge",
+              "name": "自由橋",
+              "address": "Liberty Bridge, Budapest, Hungary",
+              "lat": 47.486,
+              "lng": 19.0549
+            },
+            {
+              "key": "market",
+              "name": "中央市場",
+              "address": "Central Market Hall, Vámház körút 1-3, Budapest, Hungary",
+              "lat": 47.4869,
+              "lng": 19.058
+            },
+            {
+              "key": "parliament",
+              "name": "匈牙利國會大廈",
+              "address": "Hungarian Parliament Building, Kossuth Lajos tér 1-3, Budapest, Hungary",
+              "lat": 47.507,
+              "lng": 19.045,
+              "from": "transit"
+            },
+            {
+              "key": "shoes",
+              "name": "多瑙河鐵鞋",
+              "address": "Shoes on the Danube Bank, Budapest, Hungary",
+              "lat": 47.5037,
+              "lng": 19.0436
+            },
+            {
+              "key": "basilica",
+              "name": "聖伊什特萬聖殿",
+              "address": "St Stephen's Basilica, Szent István tér 1, Budapest, Hungary",
+              "lat": 47.5008,
+              "lng": 19.0537
+            },
+            {
+              "key": "heroes",
+              "name": "英雄廣場",
+              "address": "Heroes' Square, Budapest, Hungary",
+              "lat": 47.5149,
+              "lng": 19.0778,
+              "from": "transit"
+            },
+            {
+              "key": "vajda",
+              "name": "沃伊達奇城堡",
+              "address": "Vajdahunyad Castle, Budapest, Hungary",
+              "lat": 47.5152,
+              "lng": 19.0823
+            },
+            {
+              "key": "newyork",
+              "name": "New York Café",
+              "address": "New York Café, Erzsébet körút 9-11, Budapest, Hungary",
+              "lat": 47.4988,
+              "lng": 19.0708,
+              "from": "transit"
+            },
+            {
+              "key": "dock7",
+              "name": "Legenda Dock 7",
+              "address": "Legenda City Cruises Dock 7, Jane Haining rakpart, Budapest, Hungary",
+              "lat": 47.4941761,
+              "lng": 19.0489099,
+              "from": "driving"
+            }
+          ],
+          "notice": "⚠ 遊船 20:40 已訂，登船地點 Dock 7，建議 20:15–20:20 抵達；New York Café 尚未訂位。國會大廈內部導覽尚未購票。"
+        }
+      ]
+    },
+    "2026-10-28": {
+      "groups": [
+        {
+          "id": "morning",
+          "label": "布達佩斯離開",
+          "description": "飯店 → Budapest-Nyugati（搭 M3） → EC 278。",
+          "mode": "transit",
+          "stops": [
+            {
+              "key": "budhotel",
+              "name": "Hotel Erzsébet City Center",
+              "address": "Károlyi utca 15, 1053 Budapest, Hungary",
+              "lat": 47.4908,
+              "lng": 19.0581
+            },
+            {
+              "key": "nyugati",
+              "name": "Budapest-Nyugati",
+              "address": "Budapest-Nyugati pályaudvar, Budapest, Hungary",
+              "lat": 47.5108,
+              "lng": 19.057,
+              "from": "transit"
+            }
+          ],
+          "notice": "09:30 EC 278 從 Nyugati 出發，不是抵達時的 Keleti。建議 08:45–08:55 到站。"
+        },
+        {
+          "id": "evening",
+          "label": "布拉格抵達",
+          "description": "16:23 Praha hl.n. → SlaBur Residence → 老城最後一晚。",
+          "mode": "walking",
+          "stops": [
+            {
+              "key": "praha_station",
+              "name": "Praha hlavní nádraží",
+              "address": "Praha hlavní nádraží, Prague, Czechia",
+              "lat": 50.0835,
+              "lng": 14.4355
+            },
+            {
+              "key": "slabur",
+              "name": "SlaBur Residence",
+              "address": "U Bulhara 1655/5, 110 00 Prague, Czechia",
+              "lat": 50.0868,
+              "lng": 14.4414
+            },
+            {
+              "key": "oldtown",
+              "name": "布拉格老城廣場",
+              "address": "Staroměstské náměstí, Prague, Czechia",
+              "lat": 50.087,
+              "lng": 14.4209
+            }
+          ],
+          "notice": "下車後先入住放行李；晚上的老城散步可按體力調整。"
+        }
+      ]
+    },
+    "2026-10-29": {
+      "groups": [
+        {
+          "id": "airport",
+          "label": "清晨前往機場",
+          "description": "SlaBur Residence → AE 中央車站端 → 布拉格機場 T1。",
+          "mode": "mixed",
+          "stops": [
+            {
+              "key": "slabur",
+              "name": "SlaBur Residence",
+              "address": "U Bulhara 1655/5, 110 00 Prague, Czechia",
+              "lat": 50.0868,
+              "lng": 14.4414
+            },
+            {
+              "key": "praha_station",
+              "name": "Praha hlavní nádraží",
+              "address": "Praha hlavní nádraží, Prague, Czechia",
+              "lat": 50.0835,
+              "lng": 14.4355
+            },
+            {
+              "key": "prgairport",
+              "name": "Prague Airport Terminal 1",
+              "address": "Václav Havel Airport Prague Terminal 1, Czechia",
+              "lat": 50.1008,
+              "lng": 14.2632,
+              "from": "transit"
+            }
+          ],
+          "notice": "10:05 JX102 起飛；AE 臨時站出發前一天再次核對，目標約 07:00 到機場。"
+        }
+      ]
+    }
+  }
+}
