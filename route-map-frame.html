@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>每日行程動線示意地圖</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous">
+<style>
+*{box-sizing:border-box} html,body{height:100%;margin:0;font:13px/1.5 -apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;background:#f1f0e8;color:#213a3b} #map{height:100%;width:100%;z-index:1} #status{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);background:#fffcf5;padding:12px 16px;border:1px solid #e5dacc;border-radius:12px;font-weight:700;box-shadow:0 8px 30px #1e262526;text-align:center;max-width:90%} #status.hidden{display:none} .leaflet-container{font:12px/1.5 -apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;background:#edece3}.leaflet-popup-content-wrapper{border-radius:12px}.leaflet-popup-content{margin:11px 14px}.popup-title{font-weight:800;font-size:14px;color:#183a3c}.popup-meta{font-size:11px;color:#73817c;margin:4px 0 8px}.popup-btn{display:inline-flex;padding:5px 9px;background:#173e42;color:#fff!important;border-radius:7px;text-decoration:none;font-size:11px;font-weight:700}.stop-marker{display:flex;align-items:center;justify-content:center;background:#234c50;color:#fff;border:3px solid #f9efe1;border-radius:50%;box-shadow:0 3px 10px #172d3166;width:30px;height:30px;font-weight:900;font-size:12px}.stop-marker.first{background:#bd8358}.leaflet-control-attribution{font-size:10px!important}.map-note{position:absolute;z-index:4;top:10px;left:10px;background:rgba(255,252,245,.93);border-radius:8px;padding:5px 9px;border:1px solid #e5dccb;color:#4e6262;font-size:10px;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="map" role="region" aria-label="每日多景點動線示意地圖"></div>
+<div id="status">正在載入地圖…</div>
+<div class="map-note">大致動線 · 非實際道路／軌道</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+<script>
+'use strict';
+const statusEl=document.getElementById('status');
+const setStatus=(t)=>{statusEl.textContent=t;statusEl.classList.remove('hidden')};
+const h=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const q=new URLSearchParams(location.search), date=q.get('date'), groupId=q.get('segment');
+(async()=>{
+ try{
+  const r=await fetch('daily-routes.json',{cache:'no-cache'});
+  if(!r.ok)throw new Error('無法取得動線資料');
+  const data=await r.json();
+  const group=data.days?.[date]?.groups?.find(g=>g.id===groupId);
+  if(!group||!group.stops?.length)throw new Error('這段路線尚未建立');
+  if(!window.L)throw new Error('地圖套件無法載入');
+  const map=L.map('map',{scrollWheelZoom:false,zoomControl:true,attributionControl:true});
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'}).addTo(map);
+  const bounds=[];const stops=group.stops;
+  const colorOf={walking:'#276e69',transit:'#c3864d',train:'#a2514b',driving:'#bf9659',cable:'#a16c9c'};
+  stops.forEach((p,i)=>{
+   const xy=[p.lat,p.lng];bounds.push(xy);
+   if(i>0){const prev=stops[i-1],mode=p.from||group.mode||'walking';L.polyline([[prev.lat,prev.lng],xy],{color:colorOf[mode]||'#276e69',weight:4,opacity:.82,dashArray:'8 9',lineCap:'round'}).addTo(map)}
+   const icon=L.divIcon({className:'',html:`<div class="stop-marker ${i===0?'first':''}">${i+1}</div>`,iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-13]});
+   const url='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.address||p.name);
+   L.marker(xy,{icon,title:p.name}).bindPopup(`<div class="popup-title">${i+1}. ${h(p.name)}</div><div class="popup-meta">${h(p.address)}</div><a class="popup-btn" href="${url}" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>`).addTo(map)
+  });
+  if(bounds.length===1)map.setView(bounds[0],12);
+  else map.fitBounds(bounds,{padding:[35,35],maxZoom:14});
+  statusEl.classList.add('hidden');
+  // If the map is hidden while its iframe loads, recover correct bounds on display.
+  setTimeout(()=>map.invalidateSize(),250);
+ }catch(e){setStatus('地圖暫時無法顯示，請使用下方 Google Maps 導航。')}
+})();
+</script>
+</body>
+</html>
