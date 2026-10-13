@@ -1,0 +1,90 @@
+{
+  "schema": "central-europe-checklist-v1",
+  "description": "公開網站預設清單；使用者勾選狀態自動儲存在各自瀏覽器，不會寫回儲存庫。",
+  "items": [
+    {
+      "id": "oebb",
+      "title": "下載 10/24、10/26 有效 ÖBB 車票 PDF/QR",
+      "detail": "訂位確認 email 不是有效乘車票。",
+      "checked": false
+    },
+    {
+      "id": "flix",
+      "title": "存 FlixBus 票並確認 10/22 Opletalova 上車點",
+      "detail": "早上 09:15 發車。",
+      "checked": false
+    },
+    {
+      "id": "ck",
+      "title": "確認 10/23 09:10 CK Shuttle 飯店接送",
+      "detail": "Abraka → Haus Bellevue，門到門接送。",
+      "checked": false
+    },
+    {
+      "id": "kripp",
+      "title": "10/22～23 看 Dachstein 10/24 纜車、風速、Webcam",
+      "detail": "尚未購票，視天氣決定。",
+      "checked": false
+    },
+    {
+      "id": "oct24",
+      "title": "確認 10/24 SV170 替代巴士及 5／9 分鐘轉乘",
+      "detail": "先查 ÖBB 當日公告。",
+      "checked": false
+    },
+    {
+      "id": "schon",
+      "title": "美泉宮 10/25 08:30–08:45 門票已存檔",
+      "detail": "早上計程車約 07:45 上車。",
+      "checked": false
+    },
+    {
+      "id": "belvedere",
+      "title": "決定要不要買 10/26 Upper Belvedere 門票",
+      "detail": "目前 09:00 暫排、尚未購票。",
+      "checked": false
+    },
+    {
+      "id": "parliament",
+      "title": "決定要不要預約 10/27 國會大廈內部導覽",
+      "detail": "12:00 暫排，不代表有票。",
+      "checked": false
+    },
+    {
+      "id": "cafe",
+      "title": "預約 New York Café 晚間座位或準備候位備案",
+      "detail": "10/27 19:30 前離開，不得耽誤遊船。",
+      "checked": false
+    },
+    {
+      "id": "cruise",
+      "title": "備份 10/27 Legenda 20:40 遊船電子票",
+      "detail": "已訂 NT$1,793，Jane Haining rakpart Dock 7。",
+      "checked": false
+    },
+    {
+      "id": "nyugati",
+      "title": "儲存 10/28 EC278 電子票與 Nyugati 位置",
+      "detail": "不是 10/26 抵達的 Keleti。",
+      "checked": false
+    },
+    {
+      "id": "ae",
+      "title": "10/28 晚核對 10/29 AE 臨時站及首班車",
+      "detail": "可準備 Bolt／Uber 備案。",
+      "checked": false
+    },
+    {
+      "id": "hotel",
+      "title": "Prague Star 入住現金 €115",
+      "detail": "Duplex Studio 雙人入住；沒有承諾 twin。",
+      "checked": false
+    },
+    {
+      "id": "charger",
+      "title": "歐規 C／E／F 轉接頭、100–240V 充電器",
+      "detail": "山上另準備保暖、防風外套與手套。",
+      "checked": false
+    }
+  ]
+}
