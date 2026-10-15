@@ -177,6 +177,31 @@
 .daily-map-movement{font-size:10px;color:#9a6a40;flex:none}
 @media(max-width:760px){.daily-map-section{margin:28px 0 18px;padding:14px 11px}.daily-map-section h2{font-size:19px}.daily-map-frame{height:345px}.daily-map-stops{grid-template-columns:1fr}.daily-map-stop{padding:9px}.daily-map-tabs button{font-size:11px}}
 
+
+/* Daily hero: make the photo match the fixed cover frame at every viewport size. */
+.day-cover{height:clamp(265px,29vw,365px);isolation:isolate}
+.day-cover > .picture{position:absolute;inset:0;width:100%;height:100%;border-radius:0;overflow:hidden}
+.day-cover > .picture img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 48%}
+.day-cover > .picture:before{z-index:1}
+.day-cover .cover-shade{z-index:2;background:linear-gradient(90deg,rgba(8,25,33,.86) 0%,rgba(8,28,35,.58) 43%,rgba(7,26,33,.12) 100%),linear-gradient(0deg,rgba(3,17,24,.36),transparent 55%)}
+.day-cover .cover-text{z-index:3;left:clamp(17px,3vw,34px);right:18px;bottom:clamp(18px,2.5vw,32px);max-width:min(660px,calc(100% - 38px))}
+.day-cover .cover-text h1{font-size:clamp(27px,3vw,40px);line-height:1.28;overflow-wrap:anywhere;text-wrap:balance;margin:9px 0 5px}
+.day-cover .cover-text p{font-size:clamp(11px,1.15vw,13px);line-height:1.7;margin:0;max-width:550px}
+.day-cover .cover-text .eyebrow{font-size:clamp(9px,.9vw,11px);letter-spacing:1.5px;line-height:1.5}
+.day-cover .cover-source{z-index:4;top:12px;right:12px}
+.day-cover > .picture .picture-label{display:none}
+.city-image > .picture,.day-mini-card .thumb > .picture{height:100%;width:100%;border-radius:0}
+.city-image > .picture img,.day-mini-card .thumb > .picture img{width:100%;height:100%;object-fit:cover}
+@media(max-width:760px){
+ .day-cover{height:clamp(265px,72vw,340px);border-radius:14px}
+ .day-cover > .picture img{object-position:center center}
+ .day-cover .cover-shade{background:linear-gradient(0deg,rgba(5,23,28,.9) 0%,rgba(9,28,33,.57) 43%,rgba(9,28,33,.06) 100%)}
+ .day-cover .cover-text{left:18px;right:16px;bottom:19px;max-width:calc(100% - 34px)}
+ .day-cover .cover-text h1{font-size:clamp(24px,6vw,31px);line-height:1.3;margin:7px 0 5px}
+ .day-cover .cover-text p{font-size:11px;line-height:1.55;max-width:100%}
+ .day-cover .cover-text .eyebrow{font-size:9px;letter-spacing:1px}
+}
+
 </style>
 </head>
 <body>
@@ -641,7 +666,7 @@
       "flag": "🇦🇹",
       "headline": "高山觀景・火車轉乘日",
       "sub": "五指觀景台之後搭兩段列車與替代巴士，晚上抵達維也納。",
-      "hero": "five",
+      "hero": "dachstein_snow",
       "hotel": "wienhotel",
       "critical": true,
       "events": [
@@ -1724,7 +1749,15 @@
       "license": "CC BY-SA 4.0",
       "src": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hallstatt_-_Nordansicht.JPG?width=1100",
       "page": "https://commons.wikimedia.org/wiki/File:Hallstatt_-_Nordansicht.JPG"
+ "dachstein_snow": {
+      "file": "Dachstein winter.jpg",
+      "caption": "Dachstein 山脈冬季雪景（季節示意，非 10/24 當日實況）",
+      "author": "Gosau",
+      "license": "CC BY-SA 3.0",
+      "src": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dachstein_winter.jpg?width=1600",
+      "page": "https://commons.wikimedia.org/wiki/File:Dachstein_winter.jpg"
     },
+       },
     "five": {
       "file": "A-Krippenstein-5fingers.jpg",
       "caption": "Dachstein Krippenstein 五指觀景台",
