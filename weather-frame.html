@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>中歐行程｜當地即時天氣預報</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Noto Sans TC","PingFang TC",sans-serif;color:#193b40;background:#fff}
+body{padding:17px 18px}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.place{font-weight:800;font-size:17px;line-height:1.4;overflow-wrap:anywhere}
+.date{font-size:11px;color:#788684;margin-top:3px}
+.refresh{font-size:11px;flex-shrink:0;padding:6px 11px;background:#f4f5f0;border:1px solid #d9e1d8;border-radius:8px;color:#38585b;font-weight:750;cursor:pointer}
+.refresh:disabled{opacity:.6;cursor:default}
+.main{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:13px 0 15px}
+.weather{display:flex;align-items:center;gap:11px;min-width:0}
+.symbol{font-size:43px;line-height:1.2;flex-shrink:0}
+.desc{font-weight:800;font-size:15px;line-height:1.4}
+.range{font-weight:850;font-size:26px;white-space:nowrap;letter-spacing:-1px}
+.range small{font-size:12px;font-weight:600;letter-spacing:0;color:#81908e}
+.metrics{display:flex;flex-wrap:wrap;gap:8px}
+.metric{font-size:11px;color:#576d70;background:#f5f7f3;border-radius:7px;padding:5px 8px;white-space:nowrap}
+.metric b{color:#193b40}
+.hours{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:12px}
+.hour{border:1px solid #edf0eb;background:#fafbf8;border-radius:9px;padding:7px 2px;text-align:center;min-width:0}
+.hour .time{font-size:10px;color:#728382;font-weight:700}
+.hour .ico{font-size:19px;margin:3px 0}
+.hour .temp{font-size:13px;font-weight:800}
+.hour .rain{font-size:10px;color:#5e829a}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;color:#83918d;font-size:10px;line-height:1.5}
+.foot a{color:#527875;text-decoration:underline;text-underline-offset:2px}
+.status{min-height:160px;display:flex;flex-direction:column;justify-content:center;gap:9px;font-size:13px;color:#69817e;text-align:center}
+.status strong{color:#254448}
+.caution{font-size:10px;line-height:1.4;color:#966d45;margin-top:7px}
+@media(max-width:420px){
+ body{padding:13px 13px}
+ .place{font-size:15px}
+ .main{margin:12px 0;gap:7px}
+ .symbol{font-size:36px}
+ .range{font-size:22px}
+ .desc{font-size:13px}
+ .metric{font-size:10px;padding:4px 6px}
+ .hours{gap:5px}
+ .hour{padding:6px 1px}
+ .foot{font-size:9px}
+}
+</style>
+</head>
+<body>
+<div class="top"><div><div class="place" id="place">當地天氣預報</div><div class="date" id="date"></div></div><button class="refresh" id="refresh" type="button" onclick="loadWeather()">↻ 重新整理</button></div>
+<div id="weather" class="status" aria-live="polite">正在取得最新天氣預報…</div>
+<script>
+'use strict';
+// One self-hosted, Chinese-language iframe per itinerary location. No API key required.
+const PLACES={
+ taoyuan:{name:'桃園機場',lat:25.0797,lon:121.2342},
+ prague:{name:'布拉格',lat:50.0870,lon:14.4210},
+ krumlov:{name:'庫倫洛夫',lat:48.8127,lon:14.3175},
+ hallstatt:{name:'哈修塔特',lat:47.5622,lon:13.6493},
+ dachstein:{name:'Dachstein Krippenstein（高山）',lat:47.5219,lon:13.6916,elevation:2100},
+ vienna:{name:'維也納',lat:48.2082,lon:16.3738},
+ budapest:{name:'布達佩斯',lat:47.4979,lon:19.0402}
+};
+const query=new URLSearchParams(location.search);
+const targetDate=query.get('date')||'';
+const place=PLACES[query.get('place')];
+const el=document.getElementById('weather');
+const refresh=document.getElementById('refresh');
+let activeController=null;
+const iconAndText=(code)=>{
+ if(code===0)return ['☀️','晴朗'];
+ if(code===1)return ['🌤️','大致晴朗'];
+ if(code===2)return ['⛅','多雲時晴'];
+ if(code===3)return ['☁️','陰天'];
+ if(code===45||code===48)return ['🌫️','有霧'];
+ if([51,53,55,56,57].includes(code))return ['🌦️','毛毛雨'];
+ if([61,63,65,66,67].includes(code))return ['🌧️','有雨'];
+ if([71,73,75,77].includes(code))return ['🌨️','降雪'];
+ if([80,81,82].includes(code))return ['🌦️','陣雨'];
+ if([85,86].includes(code))return ['🌨️','陣雪'];
+ if([95,96,99].includes(code))return ['⛈️','雷雨'];
+ return ['🌡️','天氣預報'];
+};
+const val=(n,suffix='')=>Number.isFinite(n)?Math.round(n)+suffix:'—';
+const weatherLabel=(n)=>iconAndText(n==null?-1:n);
+const safe=(s)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','"':'&quot;'}[c]));
+function showStatus(message){
+ el.className='status';el.innerHTML='<strong>'+message+'</strong><div>可稍後點選「重新整理」再次查詢。</div>';
+}
+async function loadWeather(){
+ if(!place||!/^2026-10-(19|2[0-9])$/.test(targetDate)){
+  document.getElementById('date').textContent='無效的行程地點或日期';
+  showStatus('找不到這天的行程預報');refresh.disabled=true;return;
+ }
+ document.getElementById('place').textContent=place.name;
+ document.getElementById('date').textContent=targetDate.replaceAll('-','/')+' · 當地時間';
+ if(activeController)activeController.abort();
+ activeController=new AbortController();
+ refresh.disabled=true;
+ el.className='status';el.textContent='正在取得最新天氣預報…';
+ const api=new URL('https://api.open-meteo.com/v1/forecast');
+ api.searchParams.set('latitude',place.lat);
+ api.searchParams.set('longitude',place.lon);
+ api.searchParams.set('daily','weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max');
+ api.searchParams.set('hourly','temperature_2m,precipitation_probability,weather_code');
+ api.searchParams.set('forecast_days','16');
+ api.searchParams.set('timezone','auto');
+ if(place.elevation)api.searchParams.set('elevation',place.elevation);
+ // Prevent using a browser-cached response after returning to the travel page.
+ api.searchParams.set('_t',Date.now());
+ const ctrl=activeController,timeout=setTimeout(()=>ctrl.abort(),12000);
+ try{
+  const response=await fetch(api.href,{cache:'no-store',signal:ctrl.signal});
+  if(!response.ok)throw Error('weather '+response.status);
+  const json=await response.json();
+  if(json.error||!json.daily||!Array.isArray(json.daily.time))throw Error('invalid weather payload');
+  const index=json.daily.time.indexOf(targetDate);
+  if(index<0){
+   const today=new Intl.DateTimeFormat('en-CA',{year:'numeric',month:'2-digit',day:'2-digit',timeZone:json.timezone||'Europe/Prague'}).format(new Date());
+   showStatus(targetDate<today?'行程日期已過，無當日最新預報':'尚未進入可預報日期（最長約 16 天）');
+   return;
+  }
+  const daily=json.daily,code=daily.weather_code[index],info=weatherLabel(code);
+  const max=daily.temperature_2m_max[index],min=daily.temperature_2m_min[index];
+  const rain=daily.precipitation_probability_max[index],wind=daily.wind_speed_10m_max[index];
+  const blocks=[9,12,15,18].map(hour=>{
+   const key=targetDate+'T'+String(hour).padStart(2,'0')+':00';
+   const hi=json.hourly.time.indexOf(key);
+   if(hi<0)return '';
+   const hourInfo=weatherLabel(json.hourly.weather_code[hi]);
+   return '<div class="hour"><div class="time">'+String(hour).padStart(2,'0')+':00</div><div class="ico" aria-label="'+hourInfo[1]+'">'+hourInfo[0]+'</div><div class="temp">'+val(json.hourly.temperature_2m[hi],'°')+'</div><div class="rain">☂ '+val(json.hourly.precipitation_probability[hi],'%')+'</div></div>';
+  }).join('');
+  const queriedAt=new Intl.DateTimeFormat('zh-TW',{timeZone:json.timezone||'UTC',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());
+  el.className='';
+  el.innerHTML=
+   '<div class="main"><div class="weather"><div class="symbol" aria-hidden="true">'+info[0]+'</div><div class="desc">'+info[1]+'</div></div><div class="range">'+val(min,'°')+' – '+val(max,'°')+'<small> C</small></div></div>'+
+   '<div class="metrics"><div class="metric">☂ 最高降雨機率 <b>'+val(rain,'%')+'</b></div><div class="metric">〰 最大風速 <b>'+val(wind,' km/h')+'</b></div></div>'+
+   '<div class="hours">'+blocks+'</div>'+
+   (place.elevation?'<div class="caution">⚠ 高山預報（約 2,100 公尺）；纜車停駛與山頂強風請查官方公告。</div>':'')+
+   '<div class="foot"><span>查詢時間：'+queriedAt+'（當地）</span><span>資料：<a target="_blank" rel="noopener noreferrer" href="https://open-meteo.com/">Open-Meteo</a></span></div>';
+ }catch(err){
+  if(ctrl.signal.aborted&&ctrl!==activeController)return;
+  showStatus('目前連線失敗，無法取得最新預報');
+ }finally{
+  clearTimeout(timeout);
+  if(ctrl===activeController)refresh.disabled=false;
+ }
+}
+loadWeather();
+</script>
+</body>
+</html>
